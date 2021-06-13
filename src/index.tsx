@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import { of } from "rxjs";
 import { take, map } from "rxjs/operators";
 import App from "./App";
-import { bootstrapReduxStore } from "./BootstrapFunctions";
+import { bootstrapReduxStore, bootstrapRoutingManager } from "./BootstrapFunctions";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
 of(<App />)
   .pipe(take(1))
   .pipe(map(bootstrapReduxStore))
+  .pipe(map(bootstrapRoutingManager))
   .subscribe((app) => {
     ReactDOM.render(
       <React.StrictMode>{app}</React.StrictMode>,
